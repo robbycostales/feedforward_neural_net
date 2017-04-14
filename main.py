@@ -58,3 +58,29 @@ class Network:
             void
 
         """
+
+class Node:
+    def __init__ (self, activation_type, layer_type, prev_nodes, next_nodes):
+        """
+        Initializes Node
+
+        Args:
+            activation_type: type of activation function used
+            layer_type: input, hidden, or output
+            prev_nodes: previous nodes to match with weights (includes a "1"
+            for the bias)
+            next_nodes: next nodes (includes a "1" for the bias)
+
+
+        """
+        self.activation_type = activation_type
+        self.layer_type = layer_type
+        self.prev_nodes = prev_nodes
+        self.next_nodes = next_nodes
+
+
+
+
+
+
+        
