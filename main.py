@@ -14,7 +14,7 @@ import copy as c
 # _-_-_-_-_-_-_-_-_-_-_-_-_-_-_ CLASSES _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_ #
 
 class Network:
-    def __init__ (self, dimensions, activation_type):
+    def __init__ (self, dimensions, activation_type="adaline"):
         """
         Initializes network
         1. Creates nodes based on activation_type
@@ -30,16 +30,26 @@ class Network:
         """
         # creates class attribute of dimensions
         self.dimensions = dimensions
+        self.avn_type = activation_type
 
         # CREATES NODE LIST
         self.node_list = []
-        # creates input nodes
+
+        # initializes input nodes
         self.num_inputs = len(dimensions[0])
+        inputs = []
+        for i in range(self.num_inputs):
+            inputs.append(Node(self.avn_type, "input", [], []))
+        self.node_list.append(inputs)
 
-        # creates hidden layer nodes
-        self.num_hidden_layers = len(dimensions) - 2
+        # initializes hidden layer nodes
+        self.num_hidden_layers = len(self.dimensions) - 2
+        for i in range(self.num_hidden_layers):
+            layer = []
+            for j in range(self.dimensions[i+1]):
+                layer.append(Node(self.avn_type, "hidden", [], [])) ###########
 
-        # creates output nodes
+        # initializes output nodes
         self.num_outputs = len(dimensions[-1])
 
     def feedforward (self):
@@ -71,16 +81,40 @@ class Node:
             for the bias)
             next_nodes: next nodes (includes a "1" for the bias)
 
-
         """
         self.activation_type = activation_type
         self.layer_type = layer_type
         self.prev_nodes = prev_nodes
+        # initializes random weights corresponding to each input node
+        self.weights = [random.random() for i in range(len(prev_nodes))]
         self.next_nodes = next_nodes
+        self.output = 0
 
+    def get_signal (self):
+        """
+        obtains signal from previous nodes to be passed through an activation
+        function
 
+        Returns:
+            dot product of weights and previous node outputs
 
+        """
+        return numpy.dot(self.weights, [i.output for i in self.prev_nodes])
 
+    def sigmoid (self, inp):
+        """
+        sigmoid function
 
+        Args:
+            inp: from signal
+        Returns:
+            sigmoid of input
+        """
+        return 1/(1 + np.exp(-inp))
 
-        
+    def output (self):
+        x = self.get_signal()
+        self.output = self.sigmoid(x)
+        return self.output
+
+net_a = [2, 4, 1]
