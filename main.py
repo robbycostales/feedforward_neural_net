@@ -117,4 +117,5 @@ class Node:
         self.output = self.sigmoid(x)
         return self.output
 
+
 net_a = [2, 4, 1]
