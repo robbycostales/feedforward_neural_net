@@ -1,4 +1,4 @@
-# feedforward_neural_net
+# Scalable Neural Network
 
 The goal of this project is to create an architecture for a feed forward neural network that can be easily scaled.
 
