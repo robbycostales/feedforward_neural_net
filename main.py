@@ -256,7 +256,8 @@ class Network:
             rounded = "Rnd"
             target = "Tgt"
             status = "Sts"
-            print("   {0:<4}{1:<8}{2:<4}{3:<4}{4:<6}".format(node_number, raw, rounded, target, status), end="    ")
+            print("   {0:<4}{1:<8}{2:<4}{3:<4}{4:<6}".format(node_number,
+                raw, rounded, target, status), end="    ")
         print("\n")
 
         # actual input results
@@ -271,7 +272,8 @@ class Network:
                     status = "{0}".format(True)
                 else:
                     status = "{0}".format(False)
-                print("   {0:<4}{1:<8}{2:<4}{3:<4}{4:<6}".format(node_number, raw, rounded, target, status), end="    ")
+                print("   {0:<4}{1:<8}{2:<4}{3:<4}{4:<6}".format(node_number,
+                    raw, rounded, target, status), end="    ")
             print(" ")
         print(" ")
 
@@ -322,17 +324,9 @@ andplus_target = [[0, 1],
                   [1, 0]]
 
 
-# print("\n3 Layer 'XOR' and '!XOR' Check:\n")
-#
-# xor_net = Network([2, 4, 2], learning_rate=.3)
-#
-# xor_net.training(4000, bin_set, xorplus_target)
-# xor_net.testing(inputs=bin_set, targets=xorplus_target)
+print("\n3 Layer 'XOR' and '!XOR' Check:\n")
 
+xor_net = Network([2, 4, 2], learning_rate=9.42)
 
-print("\n3 Layer 'AND' and '!AND' Check:\n")
-
-xor_net = Network([2, 4, 2], learning_rate=4)
-
-xor_net.training(5000, bin_set, plus_target)
-xor_net.testing(inputs=bin_set, targets=andplus_target)
+xor_net.training(4000, bin_set, xorplus_target)
+xor_net.testing(inputs=bin_set, targets= xorplus_target)
