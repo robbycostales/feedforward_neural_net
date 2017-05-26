@@ -11,3 +11,7 @@ File Guide
   - reference for hard-coded backprop
 - sandbox.py
   - ignore--for experimental purposes
+  
+  # Note
+  
+  Backprop 'paths' need to be checked. Currently getting sub-optimal results with many hidden layers.
